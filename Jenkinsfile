@@ -14,11 +14,11 @@ pipeline {
             script {
                 if (env.BRANCH_NAME == 'main') {
                     // Do not purge builds for the main branch
-                    currentBuild.getBuild().getParent().logRotator = new hudson.tasks.LogRotator(-1, 5, -1, -1)
+                    currentBuild.rawBuild().getParent().logRotator = new hudson.tasks.LogRotator(-1, 5, -1, -1)
                 } else {
                     // Keep builds for 5 days for other branches
                     // int daysToKeep, int numToKeep, int artifactDaysToKeep, int artifactNumToKeep
-                    currentBuild.getBuild().getParent().logRotator = new hudson.tasks.LogRotator(-1, 3, -1, -1)
+                    currentBuild.rawBuild().getParent().logRotator = new hudson.tasks.LogRotator(-1, 3, -1, -1)
                 }
             }
         }
